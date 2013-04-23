@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.transittales.BillActivity"
+            android:name="org.transittales.OptionsActivity"
             android:label="@string/title_activity_bill" >
         </activity>
         <activity

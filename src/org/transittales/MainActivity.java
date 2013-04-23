@@ -20,18 +20,27 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		button_Bill = (ImageButton) findViewById(R.id.button_Bill);
 		button_Tina = (ImageButton) findViewById(R.id.button_Tina);
 		button_Abraham = (ImageButton) findViewById(R.id.button_Abraham);
 
-		button_Bill.setOnClickListener(new View.OnClickListener() {
+		setCharacterListener(button_Bill, "bill_intro_audio",
+				PlayerActivity.class);
+		setCharacterListener(button_Tina, "tina_intro_audio",
+				PlayerActivity.class);
+		setCharacterListener(button_Abraham, "abraham_intro_audio",
+				PlayerActivity.class);
+	}
+
+	private void setCharacterListener(ImageButton btn, final String state,
+			@SuppressWarnings("rawtypes") final Class intentClass) {
+		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent i = new Intent(cont, BillActivity.class);
+				Intent i = new Intent(cont, intentClass);
 				Bundle b = new Bundle();
-				b.putString("src", "audio_bill");
+				b.putString("state", state);
 				i.putExtras(b);
 				startActivity(i);
 			}
@@ -44,5 +53,4 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 }
