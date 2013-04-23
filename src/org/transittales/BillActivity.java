@@ -48,17 +48,6 @@ public class BillActivity extends Activity {
 			}
 		});
 		ll.addView(btn);
-
-		// button_Garbage = (Button) findViewById(R.id.button_Garbage);
-
-		/*
-		 * button_Garbage.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * @Override public void onClick(View arg0) { Intent i = new
-		 * Intent(cont, PlayerActivity.class); Bundle b = new Bundle();
-		 * b.putString("file", "MP3/Bill/B03.mp3"); i.putExtras(b);
-		 * startActivity(i); } });
-		 */
 	}
 
 	@Override
