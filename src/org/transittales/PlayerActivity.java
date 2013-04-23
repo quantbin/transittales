@@ -37,17 +37,40 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 		final ImageButton play;
 		ImageButton home;
 		ImageView imageViewCharachter;
+		ImageView imageButtonRideFinished;
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player);
 
 		home = (ImageButton) findViewById(R.id.imageButtonHome);
+		imageButtonRideFinished = (ImageButton) findViewById(R.id.imageButtonRideFinished);
 		rewind = (ImageButton) findViewById(R.id.imageButtonRew);
 		forward = (ImageButton) findViewById(R.id.ImageButtonFwd);
 		play = (ImageButton) findViewById(R.id.ImageButtonPlayPause);
 		pb = (ProgressBar) findViewById(R.id.progressBarPlayer);
 		imageViewCharachter = (ImageView) findViewById(R.id.imageViewCharacter);
+
+		imageButtonRideFinished.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				if (null != m && m.isPlaying()) {
+					m.stop();
+				}
+				finish();
+				moveTaskToBack(true);
+			}
+		});
+		home.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				if (null != m && m.isPlaying()) {
+					m.stop();
+				}
+				Intent i = new Intent(cont, MainActivity.class);
+				startActivity(i);
+			}
+		});
 		play.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -60,16 +83,6 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 					play.setBackgroundResource(R.drawable.btn_pause);
 					m.start();
 				}
-			}
-		});
-		home.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				if (null != m && m.isPlaying()) {
-					m.stop();
-				}
-				Intent i = new Intent(cont, MainActivity.class);
-				startActivity(i);
 			}
 		});
 		forward.setOnClickListener(new View.OnClickListener() {
@@ -98,67 +111,67 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 		String file = null;
 		int resID = -1;
 		if ("bill_intro_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B01.mp3";
 		} else if ("bill_garbage_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_garbage_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03.mp3";
 		} else if ("bill_thoughts_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_thoughts_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B04.mp3";
 		} else if ("bill_driver_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B05.mp3";
 		} else if ("bill_jerk_man_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B02A.mp3";
 		} else if ("bill_jerk_woman_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B02B.mp3";
 		} else if ("bill_garbage_rolling_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03A.mp3";
 		} else if ("bill_garbage_newspaper_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03B.mp3";
 		} else if ("bill_garbage_foodwrapper_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03C.mp3";
 		} else if ("bill_thoughts_man_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B04A.mp3";
 		} else if ("bill_thoughts_woman_audio".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;

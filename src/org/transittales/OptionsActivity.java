@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -26,11 +27,19 @@ public class OptionsActivity extends Activity {
 		Bundle bin = getIntent().getExtras();
 		state = bin.getString("state");
 
+		((ImageButton) findViewById(R.id.imageButtonHome))
+				.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						Intent i = new Intent(cont, MainActivity.class);
+						startActivity(i);
+					}
+				});
 		ImageView iv = (ImageView) findViewById(R.id.imageViewCharacter);
 		LinearLayout ll = (LinearLayout) findViewById(R.id.layout_Buttons);
 		int resID = -1;
 		if ("bill_options".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
 			ll.addView(createOptionButton("Jerk", "bill_jerk_options",
@@ -42,15 +51,15 @@ public class OptionsActivity extends Activity {
 			ll.addView(createOptionButton("Driver", "bill_driver_audio",
 					PlayerActivity.class));
 		} else if ("bill_jerk_options".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
 			ll.addView(createOptionButton("Man", "bill_jerk_man_audio",
 					PlayerActivity.class));
-			ll.addView(createOptionButton("Driver", "bill_jerk_woman_audio",
+			ll.addView(createOptionButton("Woman", "bill_jerk_woman_audio",
 					PlayerActivity.class));
 		} else if ("bill_garbage_options".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
 			ll.addView(createOptionButton("Garbage",
@@ -60,7 +69,7 @@ public class OptionsActivity extends Activity {
 			ll.addView(createOptionButton("Driver",
 					"bill_garbage_foodwrapper_audio", PlayerActivity.class));
 		} else if ("bill_thoughts_options".equals(state)) {
-			resID = getResources().getIdentifier("bill_audio", "drawable",
+			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
 			ll.addView(createOptionButton("Man", "bill_thoughts_man_audio",
