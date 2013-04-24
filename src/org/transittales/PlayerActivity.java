@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class PlayerActivity extends Activity implements OnCompletionListener,
 		Runnable {
@@ -38,6 +39,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 		ImageButton home;
 		ImageView imageViewCharachter;
 		ImageView imageButtonRideFinished;
+		TextView textViewLabel;
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 		play = (ImageButton) findViewById(R.id.ImageButtonPlayPause);
 		pb = (ProgressBar) findViewById(R.id.progressBarPlayer);
 		imageViewCharachter = (ImageView) findViewById(R.id.imageViewCharacter);
+		textViewLabel = (TextView) findViewById(R.id.textViewLabel);
 
 		imageButtonRideFinished.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -106,70 +109,83 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 		state = bin.getString("state");
 		String file = null;
 		int resID = -1;
-		if ("bill_intro_audio".equals(state)) {
+		if (PlayerStates.bill_intro_audio.name().equals(state)) {
+			textViewLabel.setText("Bill Intro");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B01.mp3";
-		} else if ("bill_garbage_audio".equals(state)) {
+		} else if (PlayerStates.bill_garbage_audio.name().equals(state)) {
+			textViewLabel.setText("Garbage");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_garbage_options";
+			nextState = OptionsStates.bill_garbage_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03.mp3";
-		} else if ("bill_thoughts_audio".equals(state)) {
+		} else if (PlayerStates.bill_thoughts_audio.name().equals(state)) {
+			textViewLabel.setText("Thoughts");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_thoughts_options";
+			nextState = OptionsStates.bill_thoughts_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B04.mp3";
-		} else if ("bill_driver_audio".equals(state)) {
+		} else if (PlayerStates.bill_driver_audio.name().equals(state)) {
+			textViewLabel.setText("Driver");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B05.mp3";
-		} else if ("bill_jerk_man_audio".equals(state)) {
+		} else if (PlayerStates.bill_jerk_man_audio.name().equals(state)) {
+			textViewLabel.setText("Biggest Jerk");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B02A.mp3";
-		} else if ("bill_jerk_woman_audio".equals(state)) {
+		} else if (PlayerStates.bill_jerk_woman_audio.name().equals(state)) {
+			textViewLabel.setText("Biggest Jerk");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B02B.mp3";
-		} else if ("bill_garbage_rolling_audio".equals(state)) {
+		} else if (PlayerStates.bill_garbage_rolling_audio.name().equals(state)) {
+			textViewLabel.setText("Rolling Garbage");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			nextState = "bill_options";
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03A.mp3";
-		} else if ("bill_garbage_newspaper_audio".equals(state)) {
+		} else if (PlayerStates.bill_garbage_newspaper_audio.name().equals(
+				state)) {
+			textViewLabel.setText("Newpaper Garbage");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03B.mp3";
-		} else if ("bill_garbage_foodwrapper_audio".equals(state)) {
+		} else if (PlayerStates.bill_garbage_foodwrapper_audio.name().equals(
+				state)) {
+			textViewLabel.setText("Food wrapper Garbage");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B03C.mp3";
-		} else if ("bill_thoughts_man_audio".equals(state)) {
+		} else if (PlayerStates.bill_thoughts_man_audio.name().equals(state)) {
+			textViewLabel.setText("Thoughts of a Man");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B04A.mp3";
-		} else if ("bill_thoughts_woman_audio".equals(state)) {
+		} else if (PlayerStates.bill_thoughts_woman_audio.name().equals(state)) {
+			textViewLabel.setText("Thoughts of a Woman");
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
-			nextState = "bill_options";
+			nextState = OptionsStates.bill_options.name();
 			nextIntent = OptionsActivity.class;
 			file = "MP3/Bill/B04B.mp3";
 		} else {
@@ -194,7 +210,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 			m.prepare();
 			pb.setMax(m.getDuration());
 			m.setOnCompletionListener(this);
-			// m.setVolume(1f, 1f);
+			m.setVolume(.1f, .1f);
 			m.start();
 			play.setBackgroundResource(R.drawable.btn_pause);
 			new Thread(this).start();
@@ -204,9 +220,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 	}
 
 	public void onCompletion(MediaPlayer arg0) {
-		if (pingFinished) {
-			// go to next state
-		} else {
+		if (!pingFinished) {
 			// play glass ping
 			try {
 				m.release();
@@ -216,6 +230,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 				m.setDataSource(descriptor.getFileDescriptor(),
 						descriptor.getStartOffset(), descriptor.getLength());
 				descriptor.close();
+				m.setVolume(.1f, .1f);
 				m.prepare();
 				m.setOnCompletionListener(this);
 				m.start();
@@ -244,6 +259,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 			if (null != m && m.isPlaying()) {
 				m.stop();
 				m.release();
+				m = null;
 			}
 		}
 		return super.onKeyDown(keyCode, event);
@@ -261,5 +277,17 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		AppUtils.getInstance().resume();
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		AppUtils.getInstance().pause();
+		super.onPause();
 	}
 }

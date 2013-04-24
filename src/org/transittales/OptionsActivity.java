@@ -38,43 +38,53 @@ public class OptionsActivity extends Activity {
 		ImageView iv = (ImageView) findViewById(R.id.imageViewCharacter);
 		LinearLayout ll = (LinearLayout) findViewById(R.id.layout_Buttons);
 		int resID = -1;
-		if ("bill_options".equals(state)) {
+		if (OptionsStates.bill_options.name().equals(state)) {
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
-			ll.addView(createOptionButton("Jerk", "bill_jerk_options",
+			ll.addView(createOptionButton("Jerk",
+					OptionsStates.bill_jerk_options.name(),
 					OptionsActivity.class));
-			ll.addView(createOptionButton("Garbage", "bill_garbage_audio",
+			ll.addView(createOptionButton("Garbage",
+					PlayerStates.bill_garbage_audio.name(),
 					PlayerActivity.class));
-			ll.addView(createOptionButton("Thoughts", "bill_thoughts_audio",
+			ll.addView(createOptionButton("Thoughts",
+					PlayerStates.bill_thoughts_audio.name(),
 					PlayerActivity.class));
-			ll.addView(createOptionButton("Driver", "bill_driver_audio",
-					PlayerActivity.class));
+			ll.addView(createOptionButton("Driver",
+					PlayerStates.bill_driver_audio.name(), PlayerActivity.class));
 		} else if ("bill_jerk_options".equals(state)) {
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
-			ll.addView(createOptionButton("Man", "bill_jerk_man_audio",
+			ll.addView(createOptionButton("Man",
+					PlayerStates.bill_jerk_man_audio.name(),
 					PlayerActivity.class));
-			ll.addView(createOptionButton("Woman", "bill_jerk_woman_audio",
+			ll.addView(createOptionButton("Woman",
+					PlayerStates.bill_jerk_woman_audio.name(),
 					PlayerActivity.class));
 		} else if ("bill_garbage_options".equals(state)) {
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
 			ll.addView(createOptionButton("Rolling",
-					"bill_garbage_rolling_audio", PlayerActivity.class));
+					PlayerStates.bill_garbage_rolling_audio.name(),
+					PlayerActivity.class));
 			ll.addView(createOptionButton("Newspaper",
-					"bill_garbage_newspaper_audio", PlayerActivity.class));
+					PlayerStates.bill_garbage_newspaper_audio.name(),
+					PlayerActivity.class));
 			ll.addView(createOptionButton("Food wrapper",
-					"bill_garbage_foodwrapper_audio", PlayerActivity.class));
+					PlayerStates.bill_garbage_foodwrapper_audio.name(),
+					PlayerActivity.class));
 		} else if ("bill_thoughts_options".equals(state)) {
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
-			ll.addView(createOptionButton("Man", "bill_thoughts_man_audio",
+			ll.addView(createOptionButton("Man",
+					PlayerStates.bill_thoughts_man_audio.name(),
 					PlayerActivity.class));
-			ll.addView(createOptionButton("Woman", "bill_thoughts_woman_audio",
+			ll.addView(createOptionButton("Woman",
+					PlayerStates.bill_thoughts_woman_audio.name(),
 					PlayerActivity.class));
 		} else {
 			// no man land
@@ -111,5 +121,17 @@ public class OptionsActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.bill, menu);
 		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		AppUtils.getInstance().resume();
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		AppUtils.getInstance().pause();
+		super.onPause();
 	}
 }

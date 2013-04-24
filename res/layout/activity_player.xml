@@ -9,32 +9,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PlayerActivity" >
 
+    <TextView
+        android:id="@+id/textViewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textIsSelectable="false" />
+
+    <ImageView
+        android:id="@+id/imageViewCharacter"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/textViewLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:adjustViewBounds="true" />
+
     <ProgressBar
         android:id="@+id/progressBarPlayer"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageButtonRideFinished"
         android:layout_alignLeft="@+id/imageButtonRideFinished"
-        android:layout_marginBottom="34dp" />
+        android:layout_below="@+id/imageViewCharacter"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp" />
 
     <ImageButton
         android:id="@+id/imageButtonRideFinished"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ImageButtonPlayPause"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="46dp"
-        android:background="@drawable/btn_my_ride_is_finished" />
-
-    <ImageView
-        android:id="@+id/imageViewCharacter"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/progressBarPlayer"
+        android:layout_below="@+id/progressBarPlayer"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp"
-        android:adjustViewBounds="true" />
+        android:layout_marginTop="40dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/btn_my_ride_is_finished" />
 
     <ImageButton
         android:id="@+id/imageButtonHome"
@@ -42,6 +54,8 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
         android:background="@drawable/btn_home"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
@@ -49,24 +63,11 @@
         android:paddingTop="0dp" />
 
     <ImageButton
-        android:id="@+id/ImageButtonFwd"
-        android:layout_width="60dp"
-        android:layout_height="76dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/btn_fast_forward"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
-        android:scaleType="fitCenter" />
-
-    <ImageButton
         android:id="@+id/imageButtonRew"
         android:layout_width="60dp"
         android:layout_height="76dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/imageButtonHome"
         android:background="@drawable/btn_rewind"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
@@ -77,11 +78,24 @@
     <ImageButton
         android:id="@+id/ImageButtonPlayPause"
         android:layout_width="60dp"
-        android:layout_height="64dp"
+        android:layout_height="76dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/ImageButtonFwd"
         android:layout_toRightOf="@+id/imageButtonRew"
         android:background="@drawable/btn_play"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/ImageButtonFwd"
+        android:layout_width="60dp"
+        android:layout_height="76dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/ImageButtonPlayPause"
+        android:background="@drawable/btn_fast_forward"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"

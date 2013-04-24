@@ -3,6 +3,7 @@ package org.transittales;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -20,17 +21,20 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		// fins characters' buttons
 		button_Bill = (ImageButton) findViewById(R.id.button_Bill);
 		button_Tina = (ImageButton) findViewById(R.id.button_Tina);
 		button_Abraham = (ImageButton) findViewById(R.id.button_Abraham);
-
-		setCharacterListener(button_Bill, "bill_intro_audio",
+		// draw characters
+		setCharacterListener(button_Bill, PlayerStates.bill_intro_audio.name(),
 				PlayerActivity.class);
-		setCharacterListener(button_Tina, "tina_intro_audio",
+		setCharacterListener(button_Tina, PlayerStates.tina_intro_audio.name(),
 				PlayerActivity.class);
-		setCharacterListener(button_Abraham, "abraham_intro_audio",
-				PlayerActivity.class);
+		setCharacterListener(button_Abraham,
+				PlayerStates.abraham_intro_audio.name(), PlayerActivity.class);
+		// init geo
+		Geo.getInstance().setLM(
+				(LocationManager) getSystemService(LOCATION_SERVICE));
 	}
 
 	private void setCharacterListener(ImageButton btn, final String state,
@@ -49,8 +53,19 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		// getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		AppUtils.getInstance().resume();
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		AppUtils.getInstance().pause();
+		super.onPause();
 	}
 }
