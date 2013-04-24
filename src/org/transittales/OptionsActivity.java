@@ -62,11 +62,11 @@ public class OptionsActivity extends Activity {
 			resID = getResources().getIdentifier("audio_bill", "drawable",
 					getPackageName());
 			// create buttons
-			ll.addView(createOptionButton("Garbage",
+			ll.addView(createOptionButton("Rolling",
 					"bill_garbage_rolling_audio", PlayerActivity.class));
-			ll.addView(createOptionButton("Thoughts",
+			ll.addView(createOptionButton("Newspaper",
 					"bill_garbage_newspaper_audio", PlayerActivity.class));
-			ll.addView(createOptionButton("Driver",
+			ll.addView(createOptionButton("Food wrapper",
 					"bill_garbage_foodwrapper_audio", PlayerActivity.class));
 		} else if ("bill_thoughts_options".equals(state)) {
 			resID = getResources().getIdentifier("audio_bill", "drawable",

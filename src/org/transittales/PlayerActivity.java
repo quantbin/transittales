@@ -88,21 +88,17 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 		forward.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				if (null != m) {
-					m.pause();
+				if (null != m && m.isPlaying()) {
 					m.seekTo(m.getCurrentPosition() + 10000);
-					m.start();
 				}
 			}
 		});
 		rewind.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				if (null != m) {
-					m.pause();
+				if (null != m && m.isPlaying()) {
 					int newPos = m.getCurrentPosition() - 10000;
 					m.seekTo(newPos > 0 ? newPos : 0);
-					m.start();
 				}
 			}
 		});
@@ -210,11 +206,6 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 	public void onCompletion(MediaPlayer arg0) {
 		if (pingFinished) {
 			// go to next state
-			Intent i = new Intent(cont, nextIntent);
-			Bundle b = new Bundle();
-			b.putString("state", nextState);
-			i.putExtras(b);
-			startActivity(i);
 		} else {
 			// play glass ping
 			try {
@@ -229,6 +220,11 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 				m.setOnCompletionListener(this);
 				m.start();
 				pingFinished = true;
+				Intent i = new Intent(cont, nextIntent);
+				Bundle b = new Bundle();
+				b.putString("state", nextState);
+				i.putExtras(b);
+				startActivity(i);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -255,7 +251,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener,
 
 	@Override
 	public void run() {
-		while (null != m && m.isPlaying() && !pingFinished) {
+		while (null != m && !pingFinished) {
 			try {
 				Thread.sleep(500);
 				if (null != m && m.isPlaying()) {
