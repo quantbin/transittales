@@ -1,0 +1,6 @@
+img=audio_bill
+
+text=Thoughts
+file=MP3/Bill/B04.mp3
+next_state=bill_thoughts_options
+next_intent_class=org.transittales.OptionsActivity

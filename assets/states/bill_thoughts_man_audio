@@ -1,0 +1,6 @@
+img=audio_bill
+
+text=Thoughts of a Man
+file=MP3/Bill/B04A.mp3
+next_state=bill_options
+next_intent_class=org.transittales.OptionsActivity

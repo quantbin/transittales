@@ -1,0 +1,6 @@
+img=audio_bill
+
+text=Garbage Newspaper
+file=MP3/Bill/B03B.mp3
+next_state=bill_options
+next_intent_class=org.transittales.OptionsActivity

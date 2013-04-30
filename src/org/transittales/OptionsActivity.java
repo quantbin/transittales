@@ -1,5 +1,7 @@
 package org.transittales;
 
+import java.util.Properties;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,75 +29,109 @@ public class OptionsActivity extends Activity {
 		Bundle bin = getIntent().getExtras();
 		state = bin.getString("state");
 
-		((ImageButton) findViewById(R.id.imageButtonHome))
-				.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View arg0) {
-						Intent i = new Intent(cont, MainActivity.class);
-						startActivity(i);
-					}
-				});
+		((ImageButton) findViewById(R.id.imageButtonHome)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(cont, MainActivity.class);
+				startActivity(i);
+			}
+		});
 		ImageView iv = (ImageView) findViewById(R.id.imageViewCharacter);
 		LinearLayout ll = (LinearLayout) findViewById(R.id.layout_Buttons);
 		int resID = -1;
-		if (OptionsStates.bill_options.name().equals(state)) {
-			resID = getResources().getIdentifier("audio_bill", "drawable",
-					getPackageName());
-			// create buttons
-			ll.addView(createOptionButton("Jerk",
-					OptionsStates.bill_jerk_options.name(),
-					OptionsActivity.class));
-			ll.addView(createOptionButton("Garbage",
-					PlayerStates.bill_garbage_audio.name(),
-					PlayerActivity.class));
-			ll.addView(createOptionButton("Thoughts",
-					PlayerStates.bill_thoughts_audio.name(),
-					PlayerActivity.class));
-			ll.addView(createOptionButton("Driver",
-					PlayerStates.bill_driver_audio.name(), PlayerActivity.class));
-		} else if ("bill_jerk_options".equals(state)) {
-			resID = getResources().getIdentifier("audio_bill", "drawable",
-					getPackageName());
-			// create buttons
-			ll.addView(createOptionButton("Man",
-					PlayerStates.bill_jerk_man_audio.name(),
-					PlayerActivity.class));
-			ll.addView(createOptionButton("Woman",
-					PlayerStates.bill_jerk_woman_audio.name(),
-					PlayerActivity.class));
-		} else if ("bill_garbage_options".equals(state)) {
-			resID = getResources().getIdentifier("audio_bill", "drawable",
-					getPackageName());
-			// create buttons
-			ll.addView(createOptionButton("Rolling",
-					PlayerStates.bill_garbage_rolling_audio.name(),
-					PlayerActivity.class));
-			ll.addView(createOptionButton("Newspaper",
-					PlayerStates.bill_garbage_newspaper_audio.name(),
-					PlayerActivity.class));
-			ll.addView(createOptionButton("Food wrapper",
-					PlayerStates.bill_garbage_foodwrapper_audio.name(),
-					PlayerActivity.class));
-		} else if ("bill_thoughts_options".equals(state)) {
-			resID = getResources().getIdentifier("audio_bill", "drawable",
-					getPackageName());
-			// create buttons
-			ll.addView(createOptionButton("Man",
-					PlayerStates.bill_thoughts_man_audio.name(),
-					PlayerActivity.class));
-			ll.addView(createOptionButton("Woman",
-					PlayerStates.bill_thoughts_woman_audio.name(),
-					PlayerActivity.class));
-		} else {
-			// no man land
-			Log.e("OptionsActivity", "*** invalid state");
+		Properties stateProp = State.load(this, state);
+		State.seenState(state);
+		if (null == stateProp) {
+			Log.e("PlayerActivity", "state not found: " + state);
 			return;
+		} else {
+			resID = getResources().getIdentifier(stateProp.getProperty("img"), "drawable", getPackageName());
+			for (int i = 1; i < 10; i++) {
+				String text = stateProp.getProperty(String.format("option.%d.text", i));
+				if (null == text) {
+					// end of options
+					break;
+				}
+				String nextState = stateProp.getProperty(String.format("option.%d.next_state", i));
+				String nextIntentClass = stateProp.getProperty(String.format("option.%d.next_intent_class", i));
+				if (null != nextState) {
+					try {
+						ll.addView(createOptionButton(text, nextState, Class.forName(nextIntentClass)));
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+						Log.e("OptionsActivity", "class not found: " + nextIntentClass);
+					}
+				} else if (null != stateProp.getProperty(String.format("option.%d.once.next_state", i))) {
+					text = stateProp.getProperty(String.format("option.%d.text", i));
+					nextState = stateProp.getProperty(String.format("option.%d.once.next_state", i));
+					nextIntentClass = stateProp.getProperty(String.format("option.%d.once.next_intent_class", i));
+					if (!State.hasSeenState(nextState)) {
+						try {
+							ll.addView(createOptionButton(text, nextState, Class.forName(nextIntentClass)));
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+							Log.e("OptionsActivity", "class not found: " + nextIntentClass);
+						}
+					} else {
+						text = stateProp.getProperty(String.format("option.%d.text", i));
+						nextState = stateProp.getProperty(String.format("option.%d.rest.next_state", i));
+						nextIntentClass = stateProp.getProperty(String.format("option.%d.rest.next_intent_class", i));
+						try {
+							ll.addView(createOptionButton(text, nextState, Class.forName(nextIntentClass)));
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+							Log.e("OptionsActivity", "class not found: " + nextIntentClass);
+						}
+					}
+				} else {
+					Log.e("OptionsActivity", "invalid options config for state: " + state);
+				}
+			}
 		}
+
+		/*
+		 * if (OptionsStateName.bill_options.name().equals(state)) { resID =
+		 * getResources().getIdentifier("audio_bill", "drawable",
+		 * getPackageName()); // create buttons
+		 * ll.addView(createOptionButton("Jerk",
+		 * OptionsStateName.bill_jerk_options.name(), OptionsActivity.class));
+		 * ll.addView(createOptionButton("Garbage",
+		 * PlayerStateName.bill_garbage_audio.name(), PlayerActivity.class));
+		 * ll.addView(createOptionButton("Thoughts",
+		 * PlayerStateName.bill_thoughts_audio.name(), PlayerActivity.class));
+		 * ll.addView(createOptionButton("Driver",
+		 * PlayerStateName.bill_driver_audio.name(), PlayerActivity.class)); }
+		 * else if ("bill_jerk_options".equals(state)) { resID =
+		 * getResources().getIdentifier("audio_bill", "drawable",
+		 * getPackageName()); // create buttons
+		 * ll.addView(createOptionButton("Man",
+		 * PlayerStateName.bill_jerk_man_audio.name(), PlayerActivity.class));
+		 * ll.addView(createOptionButton("Woman",
+		 * PlayerStateName.bill_jerk_woman_audio.name(), PlayerActivity.class));
+		 * } else if ("bill_garbage_options".equals(state)) { resID =
+		 * getResources().getIdentifier("audio_bill", "drawable",
+		 * getPackageName()); // create buttons
+		 * ll.addView(createOptionButton("Rolling",
+		 * PlayerStateName.bill_garbage_rolling_audio.name(),
+		 * PlayerActivity.class)); ll.addView(createOptionButton("Newspaper",
+		 * PlayerStateName.bill_garbage_newspaper_audio.name(),
+		 * PlayerActivity.class)); ll.addView(createOptionButton("Food wrapper",
+		 * PlayerStateName.bill_garbage_foodwrapper_audio.name(),
+		 * PlayerActivity.class)); } else if
+		 * ("bill_thoughts_options".equals(state)) { resID =
+		 * getResources().getIdentifier("audio_bill", "drawable",
+		 * getPackageName()); // create buttons
+		 * ll.addView(createOptionButton("Man",
+		 * PlayerStateName.bill_thoughts_man_audio.name(),
+		 * PlayerActivity.class)); ll.addView(createOptionButton("Woman",
+		 * PlayerStateName.bill_thoughts_woman_audio.name(),
+		 * PlayerActivity.class)); } else { // no man land
+		 * Log.e("OptionsActivity", "*** invalid state"); return; }
+		 */
 		iv.setImageResource(resID);
 	}
 
-	private Button createOptionButton(String label, final String state,
-			@SuppressWarnings("rawtypes") final Class intentClass) {
+	private Button createOptionButton(String label, final String state, @SuppressWarnings("rawtypes") final Class intentClass) {
 		Button btn = new Button(this);
 		btn.setBackgroundResource(R.drawable.btn_blank);
 		btn.setTextColor(getResources().getColor(R.color.white));

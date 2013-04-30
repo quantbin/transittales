@@ -1,0 +1,7 @@
+img=audio_tina_trisha
+
+option.1.text=Tina and Trisha
+option.1.once.next_state=tt_intro_audio
+option.1.once.next_intent_class=org.transittales.PlayerActivity
+option.1.rest.next_state=tt_options
+option.1.rest.next_intent_class=org.transittales.OptionsActivity

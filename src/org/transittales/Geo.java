@@ -43,7 +43,8 @@ public class Geo implements LocationListener {
 						msInterval, mtDistance, this);
 				listeningToUpdates = true;
 			} catch (Exception e) {
-				Log.e(tag, e.getMessage());
+				//Log.e(tag, e.getMessage());
+				Log.e(tag, "error in Geo resume");
 			}
 		}
 	}

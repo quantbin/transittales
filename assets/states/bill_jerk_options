@@ -1,0 +1,9 @@
+img=audio_bill
+
+option.1.text=Man
+option.1.next_state=bill_jerk_man_audio
+option.1.next_intent_class=org.transittales.PlayerActivity
+
+option.2.text=Woman
+option.2.next_state=bill_jerk_woman_audio
+option.2.next_intent_class=org.transittales.PlayerActivity

@@ -1,0 +1,7 @@
+img=audio_bill
+
+option.1.text=Bill
+option.1.once.next_state=bill_intro_audio
+option.1.once.next_intent_class=org.transittales.PlayerActivity
+option.1.rest.next_state=bill_options
+option.1.rest.next_intent_class=org.transittales.OptionsActivity

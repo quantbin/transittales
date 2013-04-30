@@ -1,0 +1,6 @@
+img=audio_bill
+
+text=Garbage
+file=MP3/Bill/B03.mp3
+next_state=bill_garbage_options
+next_intent_class=org.transittales.OptionsActivity

@@ -1,0 +1,13 @@
+img=audio_tina_trisha
+
+option.1.text=Rolling
+option.1.next_state=tt_garbage_rolling_audio
+option.1.next_intent_class=org.transittales.PlayerActivity
+
+option.2.text=Newspaper
+option.2.next_state=tt_garbage_newspaper_audio
+option.2.next_intent_class=org.transittales.PlayerActivity
+
+option.3.text=Gross
+option.3.next_state=tt_garbage_gross_audio
+option.3.next_intent_class=org.transittales.PlayerActivity

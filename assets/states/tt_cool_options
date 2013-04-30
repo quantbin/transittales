@@ -1,0 +1,10 @@
+img=audio_tina_trisha
+
+
+option.1.text=Man
+option.1.next_state=tt_cool_man_audio
+option.1.next_intent_class=org.transittales.PlayerActivity
+
+option.2.text=Woman
+option.2.next_state=tt_cool_woman_audio
+option.2.next_intent_class=org.transittales.PlayerActivity

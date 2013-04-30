@@ -1,0 +1,6 @@
+img=audio_tina_trisha
+
+text=Rolling Garbage
+file=MP3/TinaTrisha/TT03A.mp3
+next_state=tt_options
+next_intent_class=org.transittales.OptionsActivity
