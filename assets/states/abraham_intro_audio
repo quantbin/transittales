@@ -1,0 +1,6 @@
+img=audio_abraham
+
+text=Abraham Intro
+file=MP3/Abraham/A01.mp3
+next_state=abraham_options
+next_intent_class=org.transittales.OptionsActivity

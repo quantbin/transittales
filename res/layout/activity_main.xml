@@ -13,23 +13,26 @@
 
     <ImageButton
         android:id="@+id/button_Bill"
-        android:layout_width="100dp"
-        android:layout_height="131dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="80dp"
+        android:layout_height="110dp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/audio_bill" />
 
-    <ImageButton
-        android:id="@+id/button_Abraham"
-        android:layout_width="100dp"
-        android:layout_height="113dp"
-        android:layout_below="@+id/button_Tina"
-        android:layout_marginRight="14dp"
-        android:layout_marginTop="26dp"
-        android:layout_toLeftOf="@+id/button_Tina"
-        android:background="@drawable/audio_abraham" />
+    <TextView
+        android:id="@+id/textView_Bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_Bill"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_Bill"
+        android:alpha=".8"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor."
+        android:textColor="@color/white" />
 
     <ImageButton
         android:id="@+id/button_Tina"
@@ -37,8 +40,46 @@
         android:layout_height="86dp"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/button_Bill"
-        android:layout_marginRight="36dp"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/audio_tina_trisha" />
+
+    <TextView
+        android:id="@+id/textView_Tina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_Tina"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/button_Tina"
+        android:alpha=".8"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore."
+        android:textColor="@color/white" />
+
+    <ImageButton
+        android:id="@+id/button_Abraham"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/button_Bill"
+        android:layout_below="@+id/button_Tina"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/audio_abraham" />
+
+    <TextView
+        android:id="@+id/textView_Abraham"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_Abraham"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_Abraham"
+        android:alpha=".8"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore."
+        android:textColor="@color/white" />
 
 </RelativeLayout>

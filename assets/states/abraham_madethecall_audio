@@ -1,0 +1,6 @@
+img=audio_abraham
+
+text=Made the call
+file=MP3/Abraham/A01A.mp3
+next_state=abraham_options
+next_intent_class=org.transittales.OptionsActivity

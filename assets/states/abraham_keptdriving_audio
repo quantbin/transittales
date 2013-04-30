@@ -1,0 +1,6 @@
+img=audio_abraham
+
+text=Kept Driving
+file=MP3/Abraham/A01B.mp3
+next_state=abraham_options
+next_intent_class=org.transittales.OptionsActivity

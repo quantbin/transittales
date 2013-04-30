@@ -85,49 +85,10 @@ public class OptionsActivity extends Activity {
 					}
 				} else {
 					Log.e("OptionsActivity", "invalid options config for state: " + state);
+					return;
 				}
 			}
 		}
-
-		/*
-		 * if (OptionsStateName.bill_options.name().equals(state)) { resID =
-		 * getResources().getIdentifier("audio_bill", "drawable",
-		 * getPackageName()); // create buttons
-		 * ll.addView(createOptionButton("Jerk",
-		 * OptionsStateName.bill_jerk_options.name(), OptionsActivity.class));
-		 * ll.addView(createOptionButton("Garbage",
-		 * PlayerStateName.bill_garbage_audio.name(), PlayerActivity.class));
-		 * ll.addView(createOptionButton("Thoughts",
-		 * PlayerStateName.bill_thoughts_audio.name(), PlayerActivity.class));
-		 * ll.addView(createOptionButton("Driver",
-		 * PlayerStateName.bill_driver_audio.name(), PlayerActivity.class)); }
-		 * else if ("bill_jerk_options".equals(state)) { resID =
-		 * getResources().getIdentifier("audio_bill", "drawable",
-		 * getPackageName()); // create buttons
-		 * ll.addView(createOptionButton("Man",
-		 * PlayerStateName.bill_jerk_man_audio.name(), PlayerActivity.class));
-		 * ll.addView(createOptionButton("Woman",
-		 * PlayerStateName.bill_jerk_woman_audio.name(), PlayerActivity.class));
-		 * } else if ("bill_garbage_options".equals(state)) { resID =
-		 * getResources().getIdentifier("audio_bill", "drawable",
-		 * getPackageName()); // create buttons
-		 * ll.addView(createOptionButton("Rolling",
-		 * PlayerStateName.bill_garbage_rolling_audio.name(),
-		 * PlayerActivity.class)); ll.addView(createOptionButton("Newspaper",
-		 * PlayerStateName.bill_garbage_newspaper_audio.name(),
-		 * PlayerActivity.class)); ll.addView(createOptionButton("Food wrapper",
-		 * PlayerStateName.bill_garbage_foodwrapper_audio.name(),
-		 * PlayerActivity.class)); } else if
-		 * ("bill_thoughts_options".equals(state)) { resID =
-		 * getResources().getIdentifier("audio_bill", "drawable",
-		 * getPackageName()); // create buttons
-		 * ll.addView(createOptionButton("Man",
-		 * PlayerStateName.bill_thoughts_man_audio.name(),
-		 * PlayerActivity.class)); ll.addView(createOptionButton("Woman",
-		 * PlayerStateName.bill_thoughts_woman_audio.name(),
-		 * PlayerActivity.class)); } else { // no man land
-		 * Log.e("OptionsActivity", "*** invalid state"); return; }
-		 */
 		iv.setImageResource(resID);
 	}
 

@@ -1,0 +1,9 @@
+img=audio_abraham
+
+option.1.text=Made the call
+option.1.next_state=abraham_madethecall_audio
+option.1.next_intent_class=org.transittales.PlayerActivity
+
+option.2.text=Kept Driving
+option.2.next_state=abraham_keptdriving_audio
+option.2.next_intent_class=org.transittales.PlayerActivity

@@ -1,0 +1,7 @@
+img=audio_abraham
+
+option.1.text=Abraham
+option.1.once.next_state=abraham_intro_audio
+option.1.once.next_intent_class=org.transittales.PlayerActivity
+option.1.rest.next_state=abraham_options
+option.1.rest.next_intent_class=org.transittales.OptionsActivity

@@ -31,10 +31,7 @@ public class MainActivity extends Activity {
 		// draw characters
 		setCharacterListener(button_Bill, "bill_character");
 		setCharacterListener(button_Tina, "tt_character");
-		// setCharacterListener(button_Tina,
-		// PlayerStateName.tina_intro_audio.name(), PlayerActivity.class);
-		// setCharacterListener(button_Abraham,
-		// PlayerStateName.abraham_intro_audio.name(), PlayerActivity.class);
+		setCharacterListener(button_Abraham, "abraham_character");
 		// init geo
 		Geo.getInstance().setLM((LocationManager) getSystemService(LOCATION_SERVICE));
 	}
