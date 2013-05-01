@@ -52,8 +52,35 @@ public class OptionsActivity extends Activity {
 					// end of options
 					break;
 				}
-				String nextState = stateProp.getProperty(String.format("option.%d.next_state", i));
-				String nextIntentClass = stateProp.getProperty(String.format("option.%d.next_intent_class", i));
+				String nextState = null;
+				String nextIntentClass = null;
+				// first check if geo joke is applicable
+				nextState = stateProp.getProperty(String.format("option.%d.geo.next_state", i));
+				nextIntentClass = stateProp.getProperty(String.format("option.%d.geo.next_intent_class", i));
+				if (null != nextState) {
+					// there is a geo joke; plug it in
+					String lat = stateProp.getProperty(String.format("option.%d.geo.lat", i));
+					String lon = stateProp.getProperty(String.format("option.%d.geo.lat", i));
+					try {
+						double _lat = Double.parseDouble(lat);
+						double _lon = Double.parseDouble(lon);
+						if (Geo.getInstance().isInRange(_lat, _lon)) {
+							try {
+								ll.addView(createOptionButton(text, nextState, Class.forName(nextIntentClass)));
+							} catch (ClassNotFoundException e) {
+								e.printStackTrace();
+								Log.e("OptionsActivity", "class not found: " + nextIntentClass);
+							}
+							continue;
+						}
+					} catch (Exception e) {
+						Log.e("OptionsActivity", "failed parsing lat and lon double values");
+						continue;
+					}
+				}
+				// no geo jokes or not within geo range; check if there is a simple state transition for this option
+				nextState = stateProp.getProperty(String.format("option.%d.next_state", i));
+				nextIntentClass = stateProp.getProperty(String.format("option.%d.next_intent_class", i));
 				if (null != nextState) {
 					try {
 						ll.addView(createOptionButton(text, nextState, Class.forName(nextIntentClass)));
@@ -62,6 +89,8 @@ public class OptionsActivity extends Activity {
 						Log.e("OptionsActivity", "class not found: " + nextIntentClass);
 					}
 				} else if (null != stateProp.getProperty(String.format("option.%d.once.next_state", i))) {
+					// there is no simple state transition; see if next state has been seen;
+					// if no - play 'once' configuration, otherwise, play 'rest' configuration
 					text = stateProp.getProperty(String.format("option.%d.text", i));
 					nextState = stateProp.getProperty(String.format("option.%d.once.next_state", i));
 					nextIntentClass = stateProp.getProperty(String.format("option.%d.once.next_intent_class", i));
@@ -85,9 +114,9 @@ public class OptionsActivity extends Activity {
 					}
 				} else {
 					Log.e("OptionsActivity", "invalid options config for state: " + state);
-					return;
+					continue;
 				}
-			}
+			}// end for looping through options
 		}
 		iv.setImageResource(resID);
 	}

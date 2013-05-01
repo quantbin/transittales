@@ -1,0 +1,6 @@
+img=audio_bill
+
+text=Geo Garbage
+file=MP3/Bill/B-LOC.mp3
+next_state=bill_options
+next_intent_class=org.transittales.OptionsActivity

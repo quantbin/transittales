@@ -12,9 +12,12 @@ public class Geo implements LocationListener {
 	private static Geo instance = null;
 	private static long msInterval = 30000;
 	private static float mtDistance = 10.0f;
+	private static float mtRange = 30.0f;
 	public LocationManager lm = null;
 	private boolean listeningToUpdates = false;
 	private boolean providerEnabled = false;
+	private double lon = 0.;
+	private double lat = 0.;
 
 	public static Geo getInstance() {
 		if (null == instance) {
@@ -39,21 +42,37 @@ public class Geo implements LocationListener {
 	public void resume() {
 		if (!listeningToUpdates) {
 			try {
-				lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-						msInterval, mtDistance, this);
+				lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, msInterval, mtDistance, this);
 				listeningToUpdates = true;
 			} catch (Exception e) {
-				//Log.e(tag, e.getMessage());
+				// Log.e(tag, e.getMessage());
 				Log.e(tag, "error in Geo resume");
 			}
 		}
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public void onLocationChanged(Location location) {
-		double lon = location.getLongitude();
-		double lat = location.getLatitude();
+		lon = location.getLongitude();
+		lat = location.getLatitude();
+	}
+
+	public boolean isInRange(double _lat, double _lon) {
+		if (!providerEnabled) {
+			return false;
+		}
+		Location here = new Location("here");
+		here.setLatitude(lat);
+		here.setLongitude(lon);
+		Location there = new Location("there");
+		there.setLatitude(_lat);
+		there.setLongitude(_lon);
+		float distance = there.distanceTo(here);
+		if (Geo.mtRange > distance) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override

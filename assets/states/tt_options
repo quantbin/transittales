@@ -7,6 +7,8 @@ option.1.rest.next_state=tt_cool_options
 option.1.rest.next_intent_class=org.transittales.OptionsActivity
 
 option.2.text=Garbage
+option.2.geo.next_state=tt_garbage_geo_audio
+option.2.geo.next_intent_class=org.transittales.PlayerActivity
 option.2.once.next_state=tt_garbage_audio
 option.2.once.next_intent_class=org.transittales.PlayerActivity
 option.2.rest.next_state=tt_garbage_options
