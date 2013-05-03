@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentFilter.MalformedMimeTypeException;
 import android.location.LocationManager;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -116,7 +115,7 @@ public class MainActivity extends Activity {
             NdefMessage[] messages = getNdefMessages(getIntent());
             byte[] payload = messages[0].getRecords()[0].getPayload();
             String pl = new String(payload);
-            setIntent(new Intent()); // Consume this intent.
+            //setIntent(new Intent()); // Consume this intent.
         }
         AppUtils.getInstance().resume();
 	}
