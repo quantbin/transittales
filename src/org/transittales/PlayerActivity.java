@@ -262,13 +262,29 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 
 	@Override
 	protected void onResume() {
-		AppUtils.getInstance().resume();
 		super.onResume();
+		new BeamUtils(this).process();
+		AppUtils.getInstance().resume();
 	}
 
 	@Override
 	protected void onPause() {
 		AppUtils.getInstance().pause();
 		super.onPause();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+	}
+
+	@Override
+	protected void onStop() {
+		if (null != m && m.isPlaying()) {
+			m.stop();
+			m.release();
+			m = null;
+		}
+		super.onStop();
 	}
 }

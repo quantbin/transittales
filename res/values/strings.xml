@@ -9,5 +9,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_player">PlayerActivity</string>
+    <string name="bill_intro">Bill Zippersly\nRide along with your not-so-friendly neighgourhood conspiracy theorist and he\'ll tell you about the people adound you.</string>
 
 </resources>

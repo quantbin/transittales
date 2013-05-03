@@ -151,8 +151,9 @@ public class OptionsActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		AppUtils.getInstance().resume();
 		super.onResume();
+		new BeamUtils(this).process();
+		AppUtils.getInstance().resume();
 	}
 
 	@Override
