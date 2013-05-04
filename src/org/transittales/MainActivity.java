@@ -88,7 +88,10 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		new BeamUtils(this).process();
+		BeamUtils bu = new BeamUtils(this);
+		if (bu.tagDetected()) {
+			bu.processTag();
+		}
 		AppUtils.getInstance().resume();
 	}
 

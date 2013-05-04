@@ -8,34 +8,47 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
 
+enum Act {
+	youWin, webSite
+}
+
 public class BeamUtils {
-	private Activity a;
+	private Activity activity;
+	private Act act;
+	private String tagData;
 
 	public BeamUtils(Activity _a) {
-		a = _a;
+		activity = _a;
 	}
 
-	public boolean process() {
-		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(a.getIntent().getAction())) {
-			NdefMessage[] messages = getNdefMessages(a.getIntent());
+	public boolean tagDetected() {
+		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(activity.getIntent().getAction())) {
+			NdefMessage[] messages = getNdefMessages(activity.getIntent());
 			byte[] payload = messages[0].getRecords()[0].getPayload();
-			String pl = new String(payload);
-			if (pl.length() > 3) {
-				pl = pl.substring(3);
+			tagData = new String(payload);
+			if (tagData.length() > 3) {
+				tagData = tagData.substring(3);
 			}
-			if (pl.length() > 7) {
-				String http = pl.substring(0, 7);
-				if (pl.length() > 7 && http.equalsIgnoreCase("http://")) {
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pl));
-					a.startActivity(browserIntent);
-					return true;
+			act = Act.youWin;
+			if (tagData.length() > 7) {
+				String http = tagData.substring(0, 7);
+				if (tagData.length() > 7 && http.equalsIgnoreCase("http://")) {
+					act = Act.webSite;
 				}
 			}
-			// show you win as default
-			new YouWinDialog(a);
 			return true;
 		}
 		return false;
+	}
+
+	public void processTag() {
+		if (Act.webSite == act) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(tagData));
+			activity.startActivity(browserIntent);
+		} else {
+			// show you win as default
+			new YouWinDialog(activity);
+		}
 	}
 
 	NdefMessage[] getNdefMessages(Intent intent) {
