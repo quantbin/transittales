@@ -25,7 +25,8 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 	// Media Player
 	private MediaPlayer m;
 	private ProgressBar pb;
-	private boolean pingFinished = false;
+	private boolean playingAudio = true;
+	private boolean pingDone = false;
 	private boolean rideFinished = false;
 	private String state;
 	private String nextState;
@@ -202,8 +203,8 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 			moveTaskToBack(true);
 			return;
 		}
-		if (!pingFinished) {
-			// play glass ping
+		if (playingAudio) {
+			// finished playing audio - play glass ping
 			try {
 				m.release();
 				m = new MediaPlayer();
@@ -215,15 +216,34 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 				m.prepare();
 				m.setOnCompletionListener(this);
 				m.start();
-				pingFinished = true;
-				Intent i = new Intent(cont, nextIntent);
-				Bundle b = new Bundle();
-				b.putString("state", nextState);
-				i.putExtras(b);
-				startActivity(i);
+				playingAudio = false;
+				pingDone = true;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			// finished playing glass ping
+			try {
+				if (null != m) {
+					if (m.isPlaying()) {
+						m.stop();
+					}
+					try {
+						m.release();
+					} catch (Exception e) {
+						// ignore
+					}
+				}
+			} catch (Exception e) {
+				// ignore
+			} finally {
+				m = null;
+			}
+			Intent i = new Intent(cont, nextIntent);
+			Bundle b = new Bundle();
+			b.putString("state", nextState);
+			i.putExtras(b);
+			startActivity(i);
 		}
 	}
 
@@ -248,9 +268,8 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 
 	@Override
 	public void run() {
-		while (null != m && !pingFinished && !rideFinished) {
+		while (null != m && !rideFinished && !pingDone) {
 			try {
-				Thread.sleep(500);
 				try {
 					if (null != m && m.isPlaying()) {
 						pb.setProgress(m.getCurrentPosition());
@@ -258,6 +277,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 				} catch (Exception e) {
 					// ignore
 				}
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
