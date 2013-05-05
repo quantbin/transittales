@@ -36,6 +36,7 @@ public class BeamUtils {
 					act = Act.webSite;
 				}
 			}
+			activity.setIntent(new Intent());
 			return true;
 		}
 		return false;

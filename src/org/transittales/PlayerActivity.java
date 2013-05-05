@@ -272,12 +272,6 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 
 	@Override
 	protected void onPause() {
-		AppUtils.getInstance().pause();
-		super.onPause();
-	}
-
-	@Override
-	protected void onDestroy() {
 		try {
 			if (null != m) {
 				if (m.isPlaying()) {
@@ -294,6 +288,13 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 		} finally {
 			m = null;
 		}
+		AppUtils.getInstance().pause();
+		super.onPause();
+		finish();
+	}
+
+	@Override
+	protected void onDestroy() {
 		super.onDestroy();
 	}
 
