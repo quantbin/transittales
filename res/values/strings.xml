@@ -9,6 +9,8 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_player">PlayerActivity</string>
-    <string name="bill_intro">Bill Zippersly\nRide along with your not-so-friendly neighgourhood conspiracy theorist and he\'ll tell you about the people adound you.</string>
+    <string name="bill_intro">Bill Zippersly\n\nRide along with your not-so-friendly neighgourhood conspiracy theorist and he\'ll tell you about the people adound you.</string>
+    <string name="tt_intro">Tina &amp; Trisha\n\nEavesdrop on these gossipy girls as they talk about what\'s hot and what\'s totally not.</string>
+    <string name="abraham_intro">Abraham Swanson\n\nThis unflappably friendly guy has a story to tell and you get to choose the ending</string>
 
 </resources>

@@ -125,9 +125,9 @@ public class OptionsActivity extends Activity {
 		Button btn = new Button(this);
 		btn.setBackgroundResource(R.drawable.btn_blank);
 		btn.setTextColor(getResources().getColor(R.color.white));
-		btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 32);
-		btn.setPadding(0, 0, 0, 18);
-		btn.setHeight(25);
+		btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
+		btn.setPadding(0, 0, 0, 12);
+		btn.setHeight(18);
 		btn.setText(label);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
