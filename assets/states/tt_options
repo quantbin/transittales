@@ -6,18 +6,20 @@ option.1.once.next_intent_class=org.transittales.PlayerActivity
 option.1.rest.next_state=tt_cool_options
 option.1.rest.next_intent_class=org.transittales.OptionsActivity
 
-option.2.text=Garbage!
-option.2.geo.next_state=tt_garbage_geo_audio
-option.2.geo.next_intent_class=org.transittales.PlayerActivity
-option.2.once.next_state=tt_garbage_audio
-option.2.once.next_intent_class=org.transittales.PlayerActivity
-option.2.rest.next_state=tt_garbage_options
-option.2.rest.next_intent_class=org.transittales.OptionsActivity
+option.2.text=Garbage! (geo)
+option.2.next_state=tt_garbage_geo_audio
+option.2.next_intent_class=org.transittales.PlayerActivity
 
-option.3.text=Head Phones
-option.3.next_state=tt_headphones_audio
-option.3.next_intent_class=org.transittales.PlayerActivity
+option.3.text=Garbage!
+option.3.once.next_state=tt_garbage_audio
+option.3.once.next_intent_class=org.transittales.PlayerActivity
+option.3.rest.next_state=tt_garbage_options
+option.3.rest.next_intent_class=org.transittales.OptionsActivity
 
-option.4.text=New Person
-option.4.next_state=tt_newperson_audio
+option.4.text=Head Phones
+option.4.next_state=tt_headphones_audio
 option.4.next_intent_class=org.transittales.PlayerActivity
+
+option.5.text=New Person
+option.5.next_state=tt_newperson_audio
+option.5.next_intent_class=org.transittales.PlayerActivity

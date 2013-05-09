@@ -1,6 +1,6 @@
 img=audio_bill
 
-text=Bill Intro
+text=Bill Zippersly
 file=MP3/Bill/B01.mp3
 next_state=bill_options
 next_intent_class=org.transittales.OptionsActivity

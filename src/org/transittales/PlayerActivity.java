@@ -88,7 +88,15 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 			@Override
 			public void onClick(View arg0) {
 				if (null != m && m.isPlaying()) {
-					m.seekTo(m.getCurrentPosition() + 10000);
+					int dur = m.getDuration();
+					int pos = m.getCurrentPosition();
+					if (pos + 10000 < dur) {
+						int npos = pos + 10000;
+						Log.d("fast forward npos: ", "" + npos);
+						m.seekTo(npos);
+					} else {
+						m.seekTo(dur - 1000);
+					}
 				}
 			}
 		});
@@ -272,7 +280,9 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Ru
 			try {
 				try {
 					if (null != m && m.isPlaying()) {
-						pb.setProgress(m.getCurrentPosition());
+						int pos = m.getCurrentPosition();
+						Log.d("progress bar update position: ", "" + pos);
+						pb.setProgress(pos);
 					}
 				} catch (Exception e) {
 					// ignore

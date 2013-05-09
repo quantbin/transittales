@@ -1,6 +1,6 @@
 img=audio_tina_trisha
 
 text=Cool Woman
-file=MP3/TinaTrisha/TT02B.mp3
+file=MP3/TinaTrisha/TT02A.mp3
 next_state=tt_options
 next_intent_class=org.transittales.OptionsActivity

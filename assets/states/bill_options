@@ -4,22 +4,22 @@ option.1.text=A Jerk
 option.1.next_state=bill_jerk_options
 option.1.next_intent_class=org.transittales.OptionsActivity
 
-option.2.text=Garbage Stories
-option.2.geo.next_state=bill_garbage_geo_audio
-option.2.geo.next_intent_class=org.transittales.PlayerActivity
-option.2.geo.lat=43.658317
-option.2.geo.lon=-79.37724
-option.2.once.next_state=bill_garbage_audio
-option.2.once.next_intent_class=org.transittales.PlayerActivity
-option.2.rest.next_state=bill_garbage_options
-option.2.rest.next_intent_class=org.transittales.OptionsActivity
+option.2.text=Garbage Stories (geo)
+option.2.next_state=bill_garbage_geo_audio
+option.2.next_intent_class=org.transittales.PlayerActivity
 
-option.3.text=Hear Their Thoughts
-option.3.once.next_state=bill_thoughts_audio
+option.3.text=Garbage Stories
+option.3.once.next_state=bill_garbage_audio
 option.3.once.next_intent_class=org.transittales.PlayerActivity
-option.3.rest.next_state=bill_thoughts_options
+option.3.rest.next_state=bill_garbage_options
 option.3.rest.next_intent_class=org.transittales.OptionsActivity
 
-option.4.text=The Driver's Story
-option.4.next_state=bill_driver_audio
-option.4.next_intent_class=org.transittales.PlayerActivity
+option.4.text=Hear Their Thoughts
+option.4.once.next_state=bill_thoughts_audio
+option.4.once.next_intent_class=org.transittales.PlayerActivity
+option.4.rest.next_state=bill_thoughts_options
+option.4.rest.next_intent_class=org.transittales.OptionsActivity
+
+option.5.text=The Driver's Story
+option.5.next_state=bill_driver_audio
+option.5.next_intent_class=org.transittales.PlayerActivity

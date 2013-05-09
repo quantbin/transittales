@@ -1,6 +1,6 @@
 img=audio_bill
 
 text=Biggest Jerk
-file=MP3/Bill/B02A.mp3
+file=MP3/Bill/B02B.mp3
 next_state=bill_options
 next_intent_class=org.transittales.OptionsActivity
